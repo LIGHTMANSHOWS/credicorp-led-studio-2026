@@ -1,15 +1,15 @@
 import * as THREE from './vendor/three.module.js';
 
-// Dimensions are in metres. The floor layout is a proposal, not a venue survey.
+// Dimensions are in metres; placement is calibrated against the supplied floor plan.
 export const catalog = {
-  tunnel: {name:'Túnel',quantity:1,width:2.8,height:2.4,depth:5,note:'Planos: 2,40 m de alto. Presentación: 2,60 m. Ancho entre paredes de 2,80 m propuesto. El recorrido LED por contorno es una propuesta sobre los 100 módulos del plano.',source:'plano tunel (1).pdf y plano tunel (3).pdf; presentación, diap. 4–6'},
+  tunnel: {name:'Túnel',quantity:1,width:5,height:2.4,depth:5,note:'Huella de 5 × 5 m según planta general. Se mantienen 2,40 m del detalle: la presentación indica 2,60 m y la altura definitiva sigue pendiente. Los 100 módulos conservan sus relieves; el LED por contorno es una propuesta.',source:'Planta general 19-10-26; plano tunel (1) y (3); WhatsApp de Sonny, 21-10-26'},
   innovation: {name:'Innovation Partner',quantity:12,width:4,height:2.5,depth:2,note:'12 stands de 4 × 2 m. Arcos concéntricos R 1,825 / 1,725 m, centro a 0,675 m del piso. Credenza 1,20 × 0,50 × 0,80 m. Se incluye LED en laterales, como señala el plano.',source:'Stand Innovation.pdf; presentación, diap. 7'},
-  presenting: {name:'Presenting Partner',quantity:5,width:6,height:3.1,depth:3,note:'La presentación solicita 5 stands y 5 credenzas; la distribución del plano muestra 4. Portal frontal a 2,70 m y espina a 3,10 m. Credenza rectangular 1,20 × 0,50 × 0,80 m propuesta, sin cotas.',source:'Plano Presenting Credicorp (1)–(4).pdf; presentación, diap. 8'},
+  presenting: {name:'Presenting Partner',quantity:5,width:6,height:3.1,depth:3,note:'5 stands confirmados: Presenting 1–4 y Credicorp de 6 × 3 m como quinto módulo. Portal frontal a 2,70 m y espina a 3,10 m. Credenza rectangular 1,20 × 0,50 × 0,80 m propuesta, sin cotas.',source:'Plano Presenting Credicorp (1)–(4); planta general; confirmación de Sonny, 21-10-26'},
   food: {name:'Alimentos',quantity:8,width:3.1,height:2.2,depth:2,note:'8 toldos de 3,10 m de ancho × 2,20 m de alto. Fondo de 2 m y geometría del arco y la máscara MDF propuestos; faltan cotas de fabricación.',source:'Informacion Lightman Credicorp 19Nov.pptx, diap. 2'},
   analytic: {name:'MR Analityc',quantity:1,width:1.8,height:2.2,depth:1.8,note:'Tarima circular Ø 1,80 m confirmada. Se proponen 11 barras a distintas alturas, tarima de 0,20 m y altura máxima de 2,20 m; estos datos no están acotados.',source:'Informacion Lightman Credicorp 19Nov.pptx, diap. 3'},
   totem: {name:'Tótem',quantity:5,width:.4,height:1.5,depth:.4,note:'5 tótems de 40 × 40 cm con LED solo en la parte alta. Altura de 1,50 m propuesta. Pantalla inclinada representada de forma esquemática.',source:'Informacion Lightman Credicorp 19Nov.pptx, diap. 9'},
-  stageA: {name:'Escenario 16,50 m',quantity:1,width:16.5,height:.5,depth:4.88,note:'16,50 × 4,88 m confirmados. Modelo rectangular esquemático: la referencia tiene frente curvo sin cotas. Altura de 0,50 m propuesta.',source:'Informacion Lightman Credicorp 19Nov.pptx, diap. 10'},
-  stageB: {name:'Escenario 12,20 m',quantity:1,width:12.2,height:.5,depth:4.88,note:'12,20 × 4,88 m confirmados. Modelo rectangular esquemático: la referencia tiene frente curvo sin cotas. Altura de 0,50 m propuesta.',source:'Informacion Lightman Credicorp 19Nov.pptx, diap. 10'}
+  stageA: {name:'Escenario 16 m',quantity:1,width:16,height:.5,depth:4.8,note:'16 × 4,80 m según planta general, priorizada por Sonny sobre el PPT (16,50 × 4,88). Modelo rectangular: el frente curvo no tiene radio acotado. Altura de 0,50 m propuesta.',source:'Planta general 19-10-26; instrucción técnica de Sonny, 21-10-26'},
+  stageB: {name:'Escenario 12 m',quantity:1,width:12,height:.5,depth:4.8,note:'12 × 4,80 m según planta general, priorizada por Sonny sobre el PPT (12,20 × 4,88). Modelo rectangular: el frente curvo no tiene radio acotado. Altura de 0,50 m propuesta.',source:'Planta general 19-10-26; instrucción técnica de Sonny, 21-10-26'}
 };
 
 export const tunnelDepths = {
@@ -21,7 +21,7 @@ const finite=(value,fallback)=>Number.isFinite(Number(value))?Number(value):fall
 const bounded=(value,fallback,min,max)=>Math.max(min,Math.min(max,finite(value,fallback)));
 const rect=(x0,x1,y0,y1,z)=>[[x0,y0,z],[x1,y0,z],[x1,y1,z],[x0,y1,z],[x0,y0,z]];
 
-export function createProject(){
+export function createLegacyProject(){
   const pieces=[],counts={};
   const add=(type,x,z,rotation=0)=>{
     const c=catalog[type],n=counts[type]=(counts[type]||0)+1;
@@ -36,6 +36,29 @@ export function createProject(){
   for(const [x,z] of [[-9,7],[-4,7],[4,7],[9,7],[0,10]])add('totem',x,z);
   add('tunnel',0,16);
   return {version:1,title:'Credicorp · IA, Data & Ciberseguridad Summit 2026',eventDate:'2026-11-19',location:'Centro de Convenciones de Lima · piso 8 · salas Naciones 1, 2 y 3',layoutNote:'Distribución propuesta de 42 × 40 m. No representa un plano aprobado del LCC ni sus dimensiones reales.',floor:{width:42,depth:40},schedule:{assembly:['2026-11-16','2026-11-17','2026-11-18'],assemblyHours:'08:00–23:00',event:'2026-11-19',eventHours:'08:00–18:00',strike:'2026-11-20',strikeHours:'08:00–23:00'},source:{title:'Requerimiento 19Nov Credicorp IA',sender:'Sonny Sotomayor',date:'2026-10-20'},pieces};
+}
+
+export const PLAN = {width:96.69,depth:64.28,revision:'planta-2026-10-21',image:'./planta-referencia.png'};
+export function createProject(){
+  const base=createLegacyProject(),counts={},pieces=[];
+  // Coordinates were read from the rasterized plan, calibrated by its 16 m stage.
+  // The resulting venue extents are reference extents, not surveyed dimensions.
+  const point=(x,y)=>({x:+((x-747)/14.5).toFixed(3),z:+((y-754)/14.5).toFixed(3)});
+  const add=(type,px,py,rotation,name,extra={})=>{
+    const c=catalog[type],n=counts[type]=(counts[type]||0)+1;
+    pieces.push({id:type+'-'+String(n).padStart(2,'0'),type,name,...point(px,py),y:0,rotation,width:c.width,height:c.height,depth:c.depth,visible:true,leds:{},floor:'8',placement:'plan',...extra});
+  };
+  add('stageA',277,346,0,'Escenario 1 · 16 × 4,80 m');
+  add('stageB',748,346,0,'Escenario 2 · 12 × 4,80 m');
+  for(const [px,rotation,start] of [[1008,90,1],[1420,-90,7]])for(let i=0;i<6;i++)add('innovation',px,409+i*79.4,rotation,'Stand '+(start+i)+' · Innovation');
+  for(const [px,py,rotation,n] of [[1117,605,90,1],[1117,756,90,2],[1312,605,-90,3],[1312,756,-90,4]])add('presenting',px,py,rotation,'Presenting '+n);
+  add('presenting',1211,454,0,'Credicorp · 5.º Presenting',{note:'Sonny confirmó que Credicorp 6 × 3 m es el quinto Presenting. Ubicación norte de la exposición.'});
+  for(let i=1;i<=3;i++)add('food',747,754,180,'Al. '+i+' · piso 7 · por ubicar',{x:54+(i-1)*4,z:8,floor:'7',placement:'pending',note:'Piso 7 confirmado por Sonny. Posición exacta pendiente; este módulo se muestra en una bandeja aparte, fuera de la planta de piso 8.'});
+  for(const [n,px,py] of [[4,930,1191],[5,508,1191],[6,1143,960],[7,1236,960],[8,1330,960]])add('food',px,py,180,'Al. '+n+' · piso 8',{note:'Ubicación de Al. '+n+' en planta general. La huella en planta es 3 × 2 m; se conserva el toldo de 3,10 m del detalle, pendiente de conciliar.'});
+  add('analytic',721,1188,0,'MR Analityc · foyer');
+  for(let i=1;i<=5;i++)add('totem',747,754,0,'Tótem '+i+' · por ubicar',{x:54+(i-1)*2,z:-20,placement:'pending',note:'No se han identificado los cinco tótems en la planta. Posiciones en bandeja de pendientes; no representan ubicaciones aprobadas.'});
+  add('tunnel',1033,947,0,'Túnel · 5 × 5 m');
+  return {...base,layoutRevision:PLAN.revision,layoutNote:'Distribución trazada sobre la planta general 19-10-26, calibrada con la cota de 16 m. Ubicaciones aproximadas de referencia; no es un levantamiento. Los tótems y Al.1–3 están en bandejas separadas, por ubicar.',floor:{width:PLAN.width,depth:PLAN.depth},source:{...base.source,plan:'EVENTO DCREDICORP IA-PISO 8 V1--.19-10-26.pdf',confirmedAt:'2026-10-21',emailUpdate:'No se encontró un correo nuevo al revisar el 21-10-2026; se usa el correo del 20-10 y las confirmaciones de WhatsApp.'},pending:['Identificación de cuadrados grises de 50 × 50 cm','Identificación del bloque central de 2,50 × 2,50 m','Ubicación de cinco tótems','Altura del túnel: 2,40 / 2,60 m','Ubicación de Al.1–3 en piso 7'],pieces};
 }
 
 function roundedRect(width,height,radius,cy,z){
@@ -141,7 +164,7 @@ function ledConfig(trace,override={}){
 
 export function buildPiece(piece){
   const c=catalog[piece.type];if(!c)throw new Error('Tipo de pieza desconocido: '+piece.type);
-  const root=new THREE.Group();root.name=piece.id;root.userData.pieceId=piece.id;root.userData.type=piece.type;
+  const root=new THREE.Group();root.name=piece.id;root.userData.pieceId=piece.id;root.userData.type=piece.type;root.userData.floor=piece.floor||'8';root.userData.placement=piece.placement||'custom';root.userData.note=piece.note||c.note;
   root.position.set(finite(piece.x,0),finite(piece.y,0),finite(piece.z,0));root.rotation.y=THREE.MathUtils.degToRad(finite(piece.rotation,0));root.visible=piece.visible!==false;
   const structure=new THREE.Group();structure.name='structure';const lights=new THREE.Group();lights.name='leds';root.add(structure,lights);
   const traces=makeUnit(piece.type,structure),sx=bounded(piece.width,c.width,.1,100)/c.width,sy=bounded(piece.height,c.height,.05,30)/c.height,sz=bounded(piece.depth,c.depth,.1,100)/c.depth;

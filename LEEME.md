@@ -26,24 +26,33 @@ El lanzador busca Node.js en el runtime de Codex y después en el PATH. No insta
 | Alimentos | 8 | Toldo de 3,10 m de ancho × 2,20 m de alto |
 | MR Analityc | 1 | Tarima circular de 1,80 m de diámetro |
 | Tótems | 5 | Base de 0,40 × 0,40 m; LED superior |
-| Escenario grande | 1 | 16,50 × 4,88 m |
-| Escenario secundario | 1 | 12,20 × 4,88 m |
+| Escenario grande | 1 | 16 × 4,80 m, según planta general |
+| Escenario secundario | 1 | 12 × 4,80 m, según planta general |
 | **Total** | **34** | |
 
 Los dos arcos de Innovation son concéntricos y quedan recortados al nivel del piso. El túnel reproduce los relieves de 5, 10, 15 y 20 cm de sus dos planos. Los colores de esos planos indican profundidad, no colores LED obligatorios.
 
 ## Medidas y decisiones pendientes
 
-La planta de **42 × 40 m** y las ubicaciones de las piezas son una propuesta de distribución para trabajar en 3D. No representan un levantamiento del recinto ni una distribución aprobada.
+La distribución se trazó sobre la planta general del 19-10-26, calibrada con la cota de 16 m del escenario. Sus posiciones son aproximaciones de referencia; el área visible no es una medición certificada del recinto. Los auditorios quedan a la izquierda y la exposición a la derecha.
 
-- **Túnel:** los planos indican 2,40 m de alto y la presentación 2,60 m. El ancho del pasillo no está acotado; el modelo parte de 2,80 m.
-- **Presenting:** la presentación solicita 5 stands y 5 credenzas; el plano de distribución dibuja 4 módulos. Se usa la cantidad solicitada de 5. Las dimensiones de su credenza son propuestas.
+- **Confirmado por Sonny (21 OCT):** Credicorp 6 × 3 m es el quinto Presenting; bloques rojos suspendidos a cargo de otro proveedor; Al.1–3 en piso 7; las demás experiencias no llevan LED de nuestro alcance.
+- **Túnel:** huella de 5 × 5 m en planta. Se mantienen 2,40 m del detalle, a la espera de resolver los 2,60 m del PPT.
+- **Por ubicar:** cinco tótems y Al.1–3 se muestran en bandejas fuera de la planta de piso 8. No son posiciones aprobadas.
+- **Símbolos:** los cuadrados grises de 50 × 50 cm y el bloque central de 2,50 × 2,50 m aparecen en la referencia, sin asignarles una función no confirmada.
+- **Presenting:** 4 módulos centrales y Credicorp al norte. Credenzas con medidas propuestas.
 - **Alimentos:** faltan cotas de la máscara MDF, del arco y del fondo del toldo.
 - **MR Analityc:** la cantidad, separación y alturas de barras LED son aproximaciones de la referencia visual.
 - **Tótems y escenarios:** faltan alturas. La imagen de escenarios muestra frente curvo; la geometría rectangular inicial es un esquema basado en las dimensiones escritas.
 - Los colores y diámetros visuales de los LEDs son editables y no especificaciones de luminarias.
 
 Las longitudes LED calculadas corresponden a los recorridos del modelo. No incluyen cables de alimentación, retornos, conectores, reservas, cortes ni desperdicio. El proyecto no contiene todavía un patch de control, cálculo eléctrico ni validación de potencia o estructura.
+
+## Actualización del editor
+
+El botón **Aplicar distribución del plano** coloca las piezas en la nueva planta y conserva los ajustes LED. Se puede deshacer. El guardado anterior del navegador se mantiene disponible en **Datos y pendientes → Descargar mi distribución anterior**. Al migrar automáticamente se conservan los cambios manuales detectados; las posiciones personalizadas quedan identificadas.
+
+JSON, CSV y GLB incluyen el piso y el estado de ubicación. El GLB exporta las 34 piezas; el plano raster y las bandejas del visor son referencias de presentación, no geometría de montaje.
 
 ## Fuentes
 
@@ -57,5 +66,7 @@ Correo de Sonny Sotomayor: **“Requerimiento 19Nov Credicorp IA”**, recibido 
 - `Plano Presenting Credicorp (2).pdf`
 - `Plano Presenting Credicorp (3).pdf`
 - `Plano Presenting Credicorp (4).pdf`
+
+También se usa la planta general **EVENTO DCREDICORP IA-PISO 8 V1--.19-10-26.pdf** y las confirmaciones de WhatsApp del 21 OCT. En la revisión del 21 OCT aún no apareció un correo nuevo con el documento reenviado; ese archivo no se ha tratado como validado.
 
 Fechas indicadas: montaje del **16 al 18 de noviembre, de 08:00 a 23:00**; evento el **19 de noviembre, de 08:00 a 18:00**; desmontaje el **20 de noviembre, de 08:00 a 23:00**. Horario de Lima.

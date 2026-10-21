@@ -20,7 +20,7 @@ Incluye 34 piezas y 215 recorridos LED. Permite mover, girar y redimensionar las
 
 1 túnel, 12 stands Innovation con sus credenzas, 5 stands Presenting con sus credenzas, 8 módulos de alimentos, 1 tarima MR Analityc, 5 tótems y 2 escenarios.
 
-La distribución general es una propuesta. Las medidas sin confirmar y las diferencias entre planos y presentación se indican dentro del editor y en la guía. Las longitudes son geométricas y no incluyen alimentación, cableado ni merma.
+Actualizado el 21 OCT: distribución de piso 8 trazada sobre el plano del 19 OCT y confirmaciones de Sonny. Credicorp es el quinto Presenting; Al.1–3 pertenecen al piso 7. Cinco tótems y Al.1–3 se muestran aparte, por ubicar. Las posiciones son referencias aproximadas. Las medidas sin confirmar y las diferencias entre planos y presentación se indican dentro del editor y en la guía. Las longitudes son geométricas y no incluyen alimentación, cableado ni merma.
 
 ## Uso local
 
